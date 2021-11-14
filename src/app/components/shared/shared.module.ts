@@ -9,6 +9,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatIconModule} from '@angular/material/icon';
 
 @NgModule({
   declarations: [],
@@ -20,7 +21,8 @@ import {MatToolbarModule} from '@angular/material/toolbar';
     MatButtonModule,
     MatSnackBarModule,
     MatProgressSpinnerModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatIconModule
   ],
   exports:[
     CommonModule,
@@ -30,7 +32,8 @@ import {MatToolbarModule} from '@angular/material/toolbar';
     MatButtonModule,
     MatSnackBarModule,
     MatProgressSpinnerModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatIconModule
   ]
 })
 export class SharedModule { }
