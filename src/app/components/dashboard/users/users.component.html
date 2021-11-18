@@ -1,1 +1,85 @@
-<p>users works!</p>
+<div class="container">
+    <mat-toolbar>
+        <span>Users</span>
+        <div class="example-spacer"></div>
+        <button mat-stroked-button color="primary" routerLink='/dashboard/create-user'>
+          <span class="material-icons">person_add_alt</span>
+        </button>
+    </mat-toolbar>
+
+    <div *ngIf="userList.length > 0">
+        <mat-form-field appearance="standard">
+            <mat-label>Filter</mat-label>
+            <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input autocomplete="off">
+          </mat-form-field>
+        
+        <div class="mat-elevation-z8">
+            <table mat-table [dataSource]="dataSource" matSort>
+    
+                <!--- Note that these columns can be defined in any order.
+                      The actual rendered columns are set as a property on the row definition" -->
+              
+                <!-- Position Column -->
+                <ng-container matColumnDef="userName">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> UserName </th>
+                  <td mat-cell *matCellDef="let element"> {{element.userName}} </td>
+                </ng-container>
+              
+                <!-- Name Column -->
+                <ng-container matColumnDef="firstName">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> FirstName </th>
+                  <td mat-cell *matCellDef="let element"> {{element.firstName}} </td>
+                </ng-container>
+              
+                <!-- Weight Column -->
+                <ng-container matColumnDef="lastName">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> LastName </th>
+                  <td mat-cell *matCellDef="let element"> {{element.lastName}} </td>
+                </ng-container>
+              
+                <!-- Symbol Column -->
+                <ng-container matColumnDef="gender">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Gender </th>
+                  <td mat-cell *matCellDef="let element"> {{element.gender}} </td>
+                </ng-container>
+              
+                <ng-container matColumnDef="actions">
+                    <th mat-header-cell *matHeaderCellDef></th>
+                    <td mat-cell *matCellDef="let element; let i = index" style="text-align: right;">  
+                        <a class="pointer" style="color:  rgb(13, 127, 202);" matTooltip="see User">
+                            <mat-icon>search</mat-icon>
+                        </a>
+                        <a class="pointer" style="color: grey;" matTooltip="modify User">
+                            <mat-icon>edit</mat-icon>
+                        </a>
+                        <a class="pointer" style="color: red;" matTooltip="remove User" (click)="removeUser(i)">
+                            <mat-icon>delete</mat-icon>
+                        </a>
+                    </td>
+                </ng-container>
+        
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+              <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+        </div>
+    </div>
+    <h2 *ngIf="userList.length == 0">There are not users to show</h2>
+    
+</div>
+
+<h1 mat-dialog-title>Favorite Animal</h1>
+<div mat-dialog-content>
+  My favorite animal is:
+  <ul>
+    <li>
+      <span>&#10003;</span> Panda
+    </li>
+    <li>
+      <span>&#10003;</span> Unicorn
+    </li>
+    <li>
+      <span>&#10003;</span> Lion
+    </li>
+  </ul>
+</div>

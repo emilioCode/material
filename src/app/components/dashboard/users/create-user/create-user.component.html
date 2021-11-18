@@ -1,0 +1,47 @@
+<div class="container">
+    <mat-toolbar>
+        <span>Create-User</span>
+    </mat-toolbar>
+    <mat-card style="margin-top: 10px;">
+        <form [formGroup]="form" (ngSubmit)="handleSubmit()">
+            <mat-grid-list cols="4" rowHeight="70px">
+                <mat-grid-tile [colspan]="1" [rowspan]="1"> 
+                    <mat-form-field appearance="legacy" class="with">
+                        <mat-label>UserName</mat-label>
+                        <input matInput autocomplete="off" formControlName="userName">
+                    </mat-form-field>
+                </mat-grid-tile>
+                <mat-grid-tile [colspan]="3" [rowspan]="5" > 
+                    <img src="./assets/img/user.png" width="45%">
+                </mat-grid-tile>
+                <mat-grid-tile [colspan]="1" [rowspan]="1"> 
+                    <mat-form-field appearance="legacy" class="with">
+                        <mat-label>FirstName</mat-label>
+                        <input matInput formControlName="firstName">
+                    </mat-form-field>
+                </mat-grid-tile>
+                <mat-grid-tile [colspan]="1" [rowspan]="1"> 
+                    <mat-form-field appearance="legacy" class="with">
+                        <mat-label>LastName</mat-label>
+                        <input matInput formControlName="lastName">
+                    </mat-form-field>
+                </mat-grid-tile>
+                <mat-grid-tile [colspan]="1" [rowspan]="1">
+                    <mat-form-field appearance="legacy" class="with">
+                        <mat-label>Gender</mat-label>
+                        <mat-select formControlName="gender">
+                          <mat-option *ngFor="let item of sex" [value]="item">
+                            {{ item }}
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                </mat-grid-tile>
+                <mat-grid-tile [colspan]="1" [rowspan]="1"> 
+                    <button mat-raised-button color="primary" style="margin-right: 1%;" routerLink='/dashboard/users'>Return</button>
+                    <button type="submit" mat-raised-button color="primary" [disabled]="form.invalid">Save</button>
+                </mat-grid-tile>
+            </mat-grid-list>
+
+        </form>
+    </mat-card>
+</div>
