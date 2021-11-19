@@ -33,4 +33,9 @@ export class UserService {
   addUser(user: User){
     this.userList.unshift(user);
   }
+
+  updateUser(user: User){
+    const index = this.userList.findIndex(x => x.userName == user.userName);
+    this.userList[index] = user;
+  }
 }

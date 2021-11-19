@@ -1,10 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { User } from 'src/app/interfaces/user';
 import { UserService } from 'src/app/services/user.service';
+import { DialogUserComponent } from '../modals/dialog-user/dialog-user.component';
  
 
 @Component({
@@ -25,7 +27,7 @@ export class UsersComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
-  constructor(private userService: UserService, private _snackBar: MatSnackBar) { }
+  constructor(private userService: UserService, private _snackBar: MatSnackBar, public dialog: MatDialog) { }
 
   loadUsers(){
     this.userList = this.userService.getUsers();
@@ -51,4 +53,14 @@ export class UsersComponent implements OnInit {
     });
   }
 
+  openDialog(user: User, action: string = 'read'): void {
+    const dialogRef = this.dialog.open(DialogUserComponent, {
+      width: '100%',
+      data: { user, action },
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.loadUsers();
+    });
+  }
 }

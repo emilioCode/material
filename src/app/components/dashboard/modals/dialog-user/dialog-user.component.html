@@ -1,14 +1,12 @@
-<div class="container">
-    <mat-toolbar>
-        <span>Create-User</span>
-    </mat-toolbar>
-    <mat-card style="margin-top: 10px;">
-        <form [formGroup]="form" (ngSubmit)="handleSubmit()">
+<div>
+    <mat-card>
+        <form [formGroup]="form" (ngSubmit)="handleSubmitChange()">
+            
             <mat-grid-list cols="4" rowHeight="70px">
                 <mat-grid-tile [colspan]="1" [rowspan]="1"> 
                     <mat-form-field appearance="legacy" class="with">
                         <mat-label>UserName</mat-label>
-                        <input matInput autocomplete="off" formControlName="userName">
+                        <input matInput autocomplete="off" formControlName="userName" >
                     </mat-form-field>
                 </mat-grid-tile>
                 <mat-grid-tile [colspan]="3" [rowspan]="5" > 
@@ -37,8 +35,8 @@
                       </mat-form-field>
                 </mat-grid-tile>
                 <mat-grid-tile [colspan]="1" [rowspan]="1"> 
-                    <button mat-raised-button color="primary" style="margin-right: 1%;" routerLink='/dashboard/users'>Return</button>
-                    <button type="submit" mat-raised-button color="primary" [disabled]="form.invalid">Save</button>
+                    <button mat-raised-button color="primary" style="margin-right: 1%;" mat-dialog-close>Return</button>
+                    <button type="submit" mat-raised-button color="primary" *ngIf="data.action != 'read'" [disabled]="form.invalid">Save</button>
                 </mat-grid-tile>
             </mat-grid-list>
 

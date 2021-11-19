@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { NameValuePair } from 'src/app/interfaces/nameValuePair';
 import { User } from 'src/app/interfaces/user';
+import { CommonService } from 'src/app/services/common.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -11,11 +13,12 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./create-user.component.css']
 })
 export class CreateUserComponent implements OnInit {
-  sex:any[] = [ 'Woman', 'Man', 'Undefined' ];
+  sex:NameValuePair[] = [];
   form: FormGroup;
+  visibility:string = 'disabled';
 
   constructor(private formBuilder: FormBuilder, private userService: UserService,
-     private router: Router, private _snackBar: MatSnackBar) {
+     private router: Router, private _snackBar: MatSnackBar, private commonService: CommonService) {
     this.form = this.formBuilder.group({
       userName: [ '', Validators.required ],
       firstName: [ '', Validators.required ],
@@ -25,6 +28,9 @@ export class CreateUserComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    this.commonService.getGenders().subscribe(data => {
+      this.sex = data;
+    });
   }
   
   handleSubmit(){
